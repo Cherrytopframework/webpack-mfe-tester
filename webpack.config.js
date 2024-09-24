@@ -93,7 +93,7 @@ module.exports = {
                 // zustand: { singleton: true, requiredVersion: "^4.1.1" }, // Share Zustand to ensure single store instance
             },
         }),
-        new DotenvWebpack({}),
+        // new DotenvWebpack({}),
         // new ModuleFederationPlugin({
         //     name: "mf2",
         //     // library: { type: "module" },
