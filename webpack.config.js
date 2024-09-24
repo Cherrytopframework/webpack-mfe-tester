@@ -42,11 +42,11 @@ module.exports = {
         },
     },
     devServer: {
-        // static: {
-        //     directory: path.join(__dirname, "public"),
-        // },
-        // host: "./dist",
-        // port: 8080,
+        static: {
+            directory: path.join(__dirname, "public"),
+        },
+        host: "./dist",
+        port: 8080,
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "*",
