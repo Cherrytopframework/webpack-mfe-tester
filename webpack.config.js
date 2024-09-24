@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
+
 
 
 module.exports = {
@@ -86,6 +88,7 @@ module.exports = {
                 // For advanced/complex state management
                 zustand: { singleton: true, requiredVersion: "^4.1.1" }, // Share Zustand to ensure single store instance
             }
-        })
+        }),
+        new Dotenv({})
     ]
 };
