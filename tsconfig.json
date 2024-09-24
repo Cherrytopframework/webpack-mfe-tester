@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "moduleResolution": "node",
+
+    // "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    // "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* MUI Config */
+    // "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+
+    /* Bundler mode */
+    // "moduleResolution": "bundler",
+    // "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    // "emitDeclarationOnly": true,
+    // "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Docker Config */
+    "esModuleInterop": true,
+
+    /** RSPack Config **/
+    "paths":{
+      "*": ["./@mf-types/*"]
+    }
+
+  },
+  "include": ["src"],
+  // "references": [{ "path": "./tsconfig.node.json" }]
+}
