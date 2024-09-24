@@ -4,7 +4,7 @@ import React from 'react';
 // import { queries, paths } from 'app/utilities/queries';
 // import * as federation from 'federation_provider';
 // import OpenFitness from 'openfitness/App';
-import Button from 'tester/Button';
+// import Button from 'tester/Button';
 // import CtfButton from 'app/CherrytopFramework';
 // const App = React.lazy(() => import('app/App'));
 // const QueryWrapper = React.lazy(() => import('app/QueryWrapper'));
@@ -39,7 +39,7 @@ const App1 = () => {
     return (
         <div>
             <h1>Webpack + React MF app 2</h1>
-            <Button />
+            {/* <Button /> */}
             {/* <CtfButton /> */}
         </div>
     )
