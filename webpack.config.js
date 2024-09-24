@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const DotenvWebpack = require('dotenv-webpack');
 const path = require('path');
 
 
@@ -36,13 +37,22 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'], // Resolves these extensions
         alias: {
             // Set up aliases
-            components: path.resolve(__dirname, 'src/components/'),
-            store: path.resolve(__dirname, 'src/utilities/store/'),
+            // components: path.resolve(__dirname, 'src/components/'),
+            // store: path.resolve(__dirname, 'src/utilities/store/'),
         },
     },
-    // experiments: {
-    //     outputModule: true,
-    // },
+    devServer: {
+        // static: {
+        //     directory: path.join(__dirname, "public"),
+        // },
+        // host: "./dist",
+        // port: 8080,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*"
+        }
+    },
     plugins: [
         new HtmlWebpackPlugin({ template: './public/index.html' }),
         new ModuleFederationPlugin({
@@ -63,6 +73,7 @@ module.exports = {
                 zustand: { singleton: true, eager: true },
             },
         }),
+        new DotenvWebpack(),
         // new ModuleFederationPlugin({
         //     name: "mf2",
         //     library: { type: "module" },
