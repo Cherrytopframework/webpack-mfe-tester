@@ -2,7 +2,9 @@
 
 const Button = () => {
     return (
-        <div>Webpack React mf app 2</div>
+        <button>
+            Cherrytopframework test button Webpack5 version
+        </button>
     )
 }
 

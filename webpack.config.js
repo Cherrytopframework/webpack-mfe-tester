@@ -1,17 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
-const DotenvWebpack = require('dotenv-webpack');
 const path = require('path');
-
-// import HtmlWebpackPlugin from "html-webpack-plugin";
-// import webpack from "webpack";
-// import DotenvWebpack from "dotenv-webpack";
-// import path from "path";
-
-const { dependencies } = require("./package.json");
-//@ts-ignore
-// import packages from "./package.json" assert { type: "json" };
-// const { dependencies } = packages;
 
 
 module.exports = {
@@ -33,8 +22,7 @@ module.exports = {
                         options: {
                             modules: true,
                         },
-                    },
-                    // { loader: 'sass-loader' }, 
+                    }
                 ]
             },
             { test: /\.(js|jsx)$/, use: 'babel-loader' },
@@ -43,42 +31,48 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'], // Resolves these extensions
-        alias: {
-            // Set up aliases
-            // components: path.resolve(__dirname, 'src/components/'),
-            // store: path.resolve(__dirname, 'src/utilities/store/'),
-        },
+        alias: {},
     },
-    // experiments: {
-    //     outputModule: true,
-    // },
     devServer: {
-        // static: {
-        //     directory: path.join(__dirname, "public"),
-        // },
-        // host: "./dist",
-        port: 8082,
-        // headers: {
-        //     "Access-Control-Allow-Origin": "*",
-        //     "Access-Control-Allow-Methods": "*",
-        //     "Access-Control-Allow-Headers": "*"
-        // }
+        port: 8082
     },
     plugins: [
         new HtmlWebpackPlugin({ template: './public/index.html' }),
         new ModuleFederationPlugin({
             name: 'mf2',
             filename: "remoteEntry.js",
-            remotes: {
-                // // webpack app
-                // tester: 'tester@http://localhost:8081/remoteEntry.js',
-                // // rspack app
-                // app: 'app@http://localhost:8080/mf-manifest.js',
-                // // vite app
-                // // openfitness: "http://localhost:4173/assets/remoteEntry.js",
-            },
+            remotes: {},
             exposes: {
                 './Button': './src/Button.tsx',
+                "./App": "./src/App/index.tsx",
+                "./CherrytopFramework": "./src/Entry.tsx",
+                "./AuthProvider": "./src/components/custom/Auth/Auth3.tsx",
+                // app/AppProvider includes theme, alert, confirm, drawer providers
+                "./AppProvider": "./src/components/custom/providers/Providers.tsx",
+                "./AlertProvider": "./src/components/custom/providers/AlertProvider.tsx",
+                "./ConfirmProvider": "./src/components/custom/providers/Confirm/ConfirmProvider.tsx",
+                "./BottomNavigation": "./src/components/Mui/BottomNavigation/BottomNavigation.tsx",
+                "./Camera": "./src/components/custom/Camera/Camera.tsx",
+                "./ChatBox": "./src/components/custom/Chat/Chat.tsx",
+                "./ChatView": "./src/components/custom/Chat/ChatView.tsx",
+                "./ChartsContainer": "./src/components/custom/charts/ChartsWrapper.tsx",
+                "./DrawerContainer": "./src/components/Mui/Drawer/Drawer.tsx",
+                "./DateTimeLabel": "./src/components/custom/DateTimeLabel/DateTimeLabel.tsx",
+                './DisplayCard': './src/components/Mui/DisplayCard/DisplayCard.tsx',                        
+                "./FormContainer": "./src/components/custom/forms/FormContainer.tsx",
+                './List': './src/components/Mui/List/List.tsx',
+                "./MarkdownWrapper": "./src/components/custom/wrappers/MarkdownWrapper/MarkdownWrapper.tsx",
+                "./Navbar": "./src/components/Mui/Navbar/Navbar.tsx",
+                "./NavMenu": "./src/components/Mui/Navbar/NavMenu.tsx",
+                "./NotionDataWrapper": "./src/components/custom/NotionPage/NotionPage.tsx",
+                "./QueryWrapper": "./src/components/custom/wrappers/QueryWrapper/QueryWrapper.tsx",
+                "./ReusablePopover": "./src/components/custom/ReusablePopover/ReusablePopover.tsx",
+                "./ReusableTable": "./src/components/custom/charts/ReusableTable.tsx",
+                "./Tabs": "./src/components/Mui/Tabs/Tabs.tsx",
+                "./ThemeProvider": "./src/utilities/theme/index.ts",
+                "./utilities/queries": "./src/utilities/api/index.ts",
+                "./utilities/store": "./src/utilities/store/index.ts",
+                "./utilities/store/utilityStore": "./src/utilities/store/utilityStore.ts"
             },
             shared: {
                 react: {
@@ -90,33 +84,8 @@ module.exports = {
                     requiredVersion: "^18.3.1"
                 },
                 // For advanced/complex state management
-                // zustand: { singleton: true, requiredVersion: "^4.1.1" }, // Share Zustand to ensure single store instance
-            },
-        }),
-        // new DotenvWebpack({}),
-        // new ModuleFederationPlugin({
-        //     name: "mf2",
-        //     // library: { type: "module" },
-        //     filename: "remoteEntry.js",
-        //     remotes: {
-        //         tester: 'tester@http://localhost:8081/remoteEntry.js', //http://localhost:3000/mf-manifest.json
-        //         // app: 'app@https://cherrytopframework.netlify.app/remoteEntry.js',
-        //         // openfitness: "http://localhost:4173/assets/remoteEntry.js",
-        //     },
-        //     // exposes: {
-        //     //     './Button': './src/Button.tsx',
-        //     // },
-        //     shared: {
-        //         // ...dependencies,
-        //         react: {
-        //             singleton: true,
-        //             requiredVersion: dependencies.react,
-        //         },
-        //         "react-dom": {
-        //             singleton: true,
-        //             requiredVersion: dependencies["react-dom"],
-        //         },
-        //     },
-        // }),
-    ],
+                zustand: { singleton: true, requiredVersion: "^4.1.1" }, // Share Zustand to ensure single store instance
+            }
+        })
+    ]
 };
