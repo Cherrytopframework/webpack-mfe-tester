@@ -13,7 +13,8 @@ const paths = {
     "portfolio": "/notion/portfolio",
     "notion": "/notion",
     "graphql": "http://localhost:4000",
-    "host": process.env.CLIENT_HOSTNAME,
+    // "host": process.env.CLIENT_HOSTNAME,
+    "host": "https://home-server.ngrok.io",
     ...apiConfig.paths
 };
 
