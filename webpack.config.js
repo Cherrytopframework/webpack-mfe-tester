@@ -70,12 +70,12 @@ module.exports = {
             name: 'mf2',
             filename: "remoteEntry.js",
             remotes: {
-                // webpack app
-                tester: 'tester@http://localhost:8081/remoteEntry.js',
-                // rspack app
-                app: 'app@http://localhost:8080/mf-manifest.js',
-                // vite app
-                // openfitness: "http://localhost:4173/assets/remoteEntry.js",
+                // // webpack app
+                // tester: 'tester@http://localhost:8081/remoteEntry.js',
+                // // rspack app
+                // app: 'app@http://localhost:8080/mf-manifest.js',
+                // // vite app
+                // // openfitness: "http://localhost:4173/assets/remoteEntry.js",
             },
             exposes: {
                 './Button': './src/Button.tsx',
