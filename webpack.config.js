@@ -3,8 +3,16 @@ const { ModuleFederationPlugin } = require("webpack").container;
 const DotenvWebpack = require('dotenv-webpack');
 const path = require('path');
 
+// import HtmlWebpackPlugin from "html-webpack-plugin";
+// import webpack from "webpack";
+// import DotenvWebpack from "dotenv-webpack";
+// import path from "path";
 
-// const deps = require("./package.json").dependencies;
+const { dependencies } = require("./package.json");
+//@ts-ignore
+// import packages from "./package.json" assert { type: "json" };
+// const { dependencies } = packages;
+
 
 module.exports = {
     entry: "./src/index.ts",
@@ -41,17 +49,20 @@ module.exports = {
             // store: path.resolve(__dirname, 'src/utilities/store/'),
         },
     },
+    // experiments: {
+    //     outputModule: true,
+    // },
     devServer: {
-        static: {
-            directory: path.join(__dirname, "public"),
-        },
-        host: "./dist",
-        port: 8080,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "*",
-            "Access-Control-Allow-Headers": "*"
-        }
+        // static: {
+        //     directory: path.join(__dirname, "public"),
+        // },
+        // host: "./dist",
+        port: 8082,
+        // headers: {
+        //     "Access-Control-Allow-Origin": "*",
+        //     "Access-Control-Allow-Methods": "*",
+        //     "Access-Control-Allow-Headers": "*"
+        // }
     },
     plugins: [
         new HtmlWebpackPlugin({ template: './public/index.html' }),
@@ -59,39 +70,51 @@ module.exports = {
             name: 'mf2',
             filename: "remoteEntry.js",
             remotes: {
-                tester: 'tester@http://localhost:8081/remoteEntry.js', //http://localhost:3000/mf-manifest.json
-                // federation_provider: 'federation_provider@http://localhost:3000/remoteEntry.js',
-                // app: 'app@https://cherrytopframework.netlify.app/remoteEntry.js',
+                // webpack app
+                tester: 'tester@http://localhost:8081/remoteEntry.js',
+                // rspack app
+                app: 'app@http://localhost:8080/mf-manifest.js',
+                // vite app
                 // openfitness: "http://localhost:4173/assets/remoteEntry.js",
             },
             exposes: {
                 './Button': './src/Button.tsx',
             },
             shared: {
-                react: { singleton: true },
-                "react-dom": { singleton: true },
-                zustand: { singleton: true, eager: true },
+                react: {
+                    singleton: true,
+                    requiredVersion: "^18.3.1"
+                },
+                "react-dom": {
+                    singleton: true,
+                    requiredVersion: "^18.3.1"
+                },
+                // For advanced/complex state management
+                // zustand: { singleton: true, requiredVersion: "^4.1.1" }, // Share Zustand to ensure single store instance
             },
         }),
-        new DotenvWebpack(),
+        new DotenvWebpack({}),
         // new ModuleFederationPlugin({
         //     name: "mf2",
-        //     library: { type: "module" },
+        //     // library: { type: "module" },
         //     filename: "remoteEntry.js",
         //     remotes: {
-        //         app: 'app@https://cherrytopframework.netlify.app/remoteEntry.js',
-        //         openfitness: "http://localhost:4173/assets/remoteEntry.js",
+        //         tester: 'tester@http://localhost:8081/remoteEntry.js', //http://localhost:3000/mf-manifest.json
+        //         // app: 'app@https://cherrytopframework.netlify.app/remoteEntry.js',
+        //         // openfitness: "http://localhost:4173/assets/remoteEntry.js",
         //     },
-        //     exposes: {},
+        //     // exposes: {
+        //     //     './Button': './src/Button.tsx',
+        //     // },
         //     shared: {
-        //         // ...deps,
+        //         // ...dependencies,
         //         react: {
         //             singleton: true,
-        //             requiredVersion: deps.react,
+        //             requiredVersion: dependencies.react,
         //         },
         //         "react-dom": {
         //             singleton: true,
-        //             requiredVersion: deps["react-dom"],
+        //             requiredVersion: dependencies["react-dom"],
         //         },
         //     },
         // }),
