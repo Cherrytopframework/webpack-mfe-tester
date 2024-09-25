@@ -86,7 +86,10 @@ module.exports = {
                     requiredVersion: "^18.3.1"
                 },
                 // For advanced/complex state management
-                zustand: { singleton: true, requiredVersion: "^4.1.1" }, // Share Zustand to ensure single store instance
+                zustand: { 
+                    singleton: true, 
+                    requiredVersion: "^4.1.1" 
+                }, // Share Zustand to ensure single store instance
             }
         }),
         new Dotenv({})
