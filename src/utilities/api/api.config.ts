@@ -3,6 +3,7 @@ export default {
         "openfitness": "/openfitness",
         "openfitnessTables": "/openfitness/fitness_tables",
         "appConfig": "/app",
+        "commits": "/github/commits",
         // "mfeMetadata": "/familyapps/mfe_metadata",
     },
     host: {

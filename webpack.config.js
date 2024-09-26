@@ -67,6 +67,7 @@ module.exports = {
                 "./Navbar": "./src/components/Mui/Navbar/Navbar.tsx",
                 "./NavMenu": "./src/components/Mui/Navbar/NavMenu.tsx",
                 "./NotionDataWrapper": "./src/components/custom/NotionPage/NotionPage.tsx",
+                "./NoRemoteEntry": "./src/components/custom/NoRemoteEntry/NoRemoteEntry.tsx",
                 "./QueryWrapper": "./src/components/custom/wrappers/QueryWrapper/QueryWrapper.tsx",
                 "./ReusablePopover": "./src/components/custom/ReusablePopover/ReusablePopover.tsx",
                 "./ReusableTable": "./src/components/custom/charts/ReusableTable.tsx",
