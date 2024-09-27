@@ -12,8 +12,11 @@ import {
     // Delete as DeleteIcon
 } from '@mui/icons-material';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useChatStore } from '../../../utilities/store'
+import { ChatState } from '../../../utilities/store'
+import { client, paths } from '../../../utilities/api';
+import { chatScripts } from './chatHelper';
 
 
 // ***
@@ -22,13 +25,75 @@ import { useChatStore } from '../../../utilities/store'
 // *  - Drop and go chat ui with logic to expose chat values
 // ***
 const Chat = (props: any) => {
-    // const appStore = useAppStore();
     const chatStore = useChatStore();
 
-    // const chatScripts = () => {};
-    let chat: any = chatStore;
+    // Plug in the passed in store if there is one
+    let chat: ChatState = props?.chatStore
+        ? props.chatStore
+        : chatStore;
+
     let stabilityBalance = 0;
     const ref = useRef();
+
+    const handleSubmit = async () => {
+        console.log("send", props.submitPath);
+
+        if (props?.submitPath) {
+
+            props.handleSend({ status: "loading", isLoading: true });
+
+            const path = (typeof(props.submitPath) === "function")
+                ? props.submitPath(paths) 
+                : props.submitPath;
+
+            try {
+                const response = await client.post(path, {
+                    message: chat.inputMessage
+                });
+
+                chatScripts.handleSendMessage({
+                    chatStore: chat,
+                    serverMutation: {
+                        mutate: (payload: any) => console.log('chatScripts.handleSendMessage: ', payload),
+                    }
+                });
+
+                if (response.data) props.handleSend({ 
+                    status: "success", 
+                    isLoading: false, 
+                    data: response.data 
+                });
+
+                
+            } catch (error) {
+                console.error(error);
+                props.handleSend({ 
+                    status: "error", 
+                    isLoading: false, 
+                    error: error 
+                });
+            }
+
+        }
+        else if (props?.handleSend) props.handleSend(chat);
+    };
+
+    useEffect(() => {
+        if (props?.initialData) {
+            const {
+                activeChatId,
+                activeChat,
+                messages
+            } = props?.initialData;
+
+            chat.setState({
+                activeChatId,
+                activeChat,
+                messages
+            });
+        };
+    }, []);
+
     return (
 
         <Box component={Paper} sx={{ position: 'sticky', bottom: 0, left: 0, right: 0, backdropFilter: 'blur(8px)' }}>
@@ -121,8 +186,12 @@ const Chat = (props: any) => {
                                         aria-label="filter"
                                         size="small"
                                         color="inherit"
-                                        // onClick={() => chatScripts.handleAddAttachment(chat)}
-                                        disabled={!chat.activeChat?.session_id}
+                                        onClick={
+                                            props?.handleAttachmentClick
+                                                ? props.handleAttachmentClick
+                                                : () => {}
+                                        }
+                                        // disabled={!chat.activeChat?.session_id}
                                     >
                                         <AttachFile />
                                     </IconButton>
@@ -136,10 +205,7 @@ const Chat = (props: any) => {
                                 sx={theme => ({ color: theme.palette.primary.main })}
                                 aria-label="send"
                                 color="inherit"
-                                onClick={() => {
-                                    console.log("send", ref.current)
-                                    if (props?.handleSend) props.handleSend(chat.inputMessage);
-                                }}
+                                onClick={handleSubmit}
                                 size="small"
                             >
                                 <SendIcon />
@@ -176,7 +242,15 @@ const Chat = (props: any) => {
                 <Typography variant="body1" sx={{ flexGrow: 1 }}>
                     model: <b>{chat.defaultModel}</b>
                 </Typography>
-                <IconButton onClick={() => chat.handleDrawer(true)} sx={{ color: "text.primary" }}> 
+                <IconButton 
+                    onClick={props?.handleDrawerClick 
+                        ? props?.handleDrawerClick 
+                        : () => {}
+                    } 
+                    size="small" 
+                    color="inherit" 
+                    sx={{ color: "text.primary" }}
+                > 
                     <ArrowDropDownIcon />
                 </IconButton>
                 {/* <IconButton onClick={() => chat.setToolsWindowDrawer(true)} sx={{ color: "text.primary" }}> 

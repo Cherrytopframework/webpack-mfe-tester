@@ -12,7 +12,8 @@ const QueryWrapper2 = ({
     children,
     options,
     loadingContent,
-    errorContent
+    errorContent,
+    ...props
 } : {
     path: (paths: any) => string,
     children: (data: any) => ReactNode
@@ -22,7 +23,8 @@ const QueryWrapper2 = ({
         graphql: false | boolean
     }
     loadingContent?: ReactNode,
-    errorContent?: (error: any) => ReactNode
+    errorContent?: (error: any) => ReactNode,
+    [key: string]: any
 }) => {
     const queryPath = path(paths);
     const wrapperQuery = useQuery(
@@ -31,6 +33,11 @@ const QueryWrapper2 = ({
             ? queries.query(queryPath, options?.payload, options?.method)
             : queries.graphQuery(queryPath, options?.payload, options?.method)
     );
+
+    const handleSuccess = () => {
+        if (props?.onData) props.onData(wrapperQuery.data);
+        return children({ data: wrapperQuery.data });
+    };
     
     return ({
         pending: (<></>),
@@ -42,7 +49,7 @@ const QueryWrapper2 = ({
         ),
         success: (
             <Suspense fallback={<CircularProgress />}>
-                {children({ data: wrapperQuery.data })}
+                {handleSuccess()}
             </Suspense>
         )
     }[wrapperQuery.status])

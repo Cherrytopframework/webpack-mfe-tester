@@ -18,7 +18,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import MarkdownWrapper from '../wrappers/MarkdownWrapper/MarkdownWrapper';
 
 // Services
-import { useChatStore } from "../../../utilities/store";
+import { ChatState, useChatStore } from "../../../utilities/store";
 import { client, paths } from '../../../utilities/api';
 
 
@@ -31,7 +31,11 @@ const ChatView = (props: any) => {
         // isLoading
     } = props;
 
-    const chat = useChatStore();
+    const chatStore = useChatStore();
+
+    const chat: ChatState = props?.chatStore
+        ? props.chatStore
+        : chatStore;
     
     // Refs
     const chatContainerRef = useRef(null); // reference to the scroll container
@@ -170,7 +174,7 @@ const ChatView = (props: any) => {
                         : (
                             <>
                                 {chat.messages
-                                    .map((message, index) => (
+                                    .map((message: any, index: number) => (
                                         <motion.div 
                                             key={index} 
                                             animate={{ opacity: 1 }}

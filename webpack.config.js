@@ -57,6 +57,7 @@ module.exports = {
                 "./Camera": "./src/components/custom/Camera/Camera.tsx",
                 "./ChatBox": "./src/components/custom/Chat/Chat.tsx",
                 "./ChatView": "./src/components/custom/Chat/ChatView.tsx",
+                "./chatScripts": "./src/components/custom/Chat/chatHelper.ts",
                 "./ChartsContainer": "./src/components/custom/charts/ChartsWrapper.tsx",
                 "./DrawerContainer": "./src/components/Mui/Drawer/Drawer.tsx",
                 "./DateTimeLabel": "./src/components/custom/DateTimeLabel/DateTimeLabel.tsx",

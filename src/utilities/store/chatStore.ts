@@ -57,7 +57,7 @@ interface ChatState {
   setState: (state: any) => void;
 }
 
-export const useChatStore = create<ChatState>((set) => ({
+const useChatStore = create<ChatState>((set) => ({
     messages: [],
     view: "chat",
     chatMode: '/chat',
@@ -118,16 +118,7 @@ export const useChatStore = create<ChatState>((set) => ({
     setState: (state: any) => set((prevState) => ({ ...prevState, ...state })),
   }));
   
-
-
-interface SupabaseStoreTypes {
-  session: any
-  setSession: (session: any) => void
-}
-
-export const useSupabaseStore = create<SupabaseStoreTypes>((set) => ({
-  session: null,
-  setSession: (session: any) => set({ session }),
-}));
-
+export default useChatStore;
+export { useChatStore };
+export type { ChatState };
   

@@ -1,20 +1,14 @@
 import axios from "axios";
 import apiConfig from "./api.config";
 
+const isDevelopment = (process.env.NODE_ENV === "development");
 // todo: write an npx command to add paths
 const paths = {
-    "example": "/example",
-    "notionTest": "/notion/Home",
-    "schema": '/database/api/read_schema',
-    "database": '/database/',
-    "chat": "/chat/generate",
-    "generateImage": "/stability/generate",
-    "ocr": "/camera/analyze-image",
-    "portfolio": "/notion/portfolio",
-    "notion": "/notion",
     "graphql": "http://localhost:4000",
     // "host": process.env.CLIENT_HOSTNAME,
-    "host": "https://home-server.ngrok.io",
+    "host": isDevelopment 
+        ? "http://localhost:5052" 
+        : "https://home-server.ngrok.io",
     ...apiConfig.paths
 };
 
