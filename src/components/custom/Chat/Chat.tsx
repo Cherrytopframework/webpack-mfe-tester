@@ -170,11 +170,15 @@ const Chat = (props: any) => {
                             <Tooltip title={!chat.activeChat?.session_id ? "Select a session to use camera" : "Camera"}>
                                 <IconButton
                                     sx={theme => ({ color: theme.palette.primary.main })}
-                                    aria-label="filter"
+                                    aria-label="camera"
                                     size="small"
                                     color="inherit"
-                                    // onClick={openCameraApp}
-                                    disabled={!chat.activeChat?.session_id}
+                                    onClick={
+                                        props?.handleCameraClick
+                                            ? props.handleCameraClick
+                                            : () => {}
+                                    }
+                                    // disabled={!chat.activeChat?.session_id || props?.initialData?.activeChatId}
                                 >
                                     <CameraIcon />
                                 </IconButton>
@@ -183,7 +187,7 @@ const Chat = (props: any) => {
                                 <Badge color="primary" invisible={!chat.activeChat?.session_id}>
                                     <IconButton
                                         sx={theme => ({ color: theme.palette.primary.main })}
-                                        aria-label="filter"
+                                        aria-label="attachment"
                                         size="small"
                                         color="inherit"
                                         onClick={
@@ -191,7 +195,7 @@ const Chat = (props: any) => {
                                                 ? props.handleAttachmentClick
                                                 : () => {}
                                         }
-                                        // disabled={!chat.activeChat?.session_id}
+                                        // disabled={!chat.activeChat?.session_id || props?.initialData?.activeChatId}
                                     >
                                         <AttachFile />
                                     </IconButton>

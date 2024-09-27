@@ -47,6 +47,7 @@ module.exports = {
             exposes: {
                 './Button': './src/Button.tsx',
                 "./App": "./src/App/index.tsx",
+                "./AdvancedCamera": "./src/components/custom/AdvancedCamera/AdvancedCamera.tsx",
                 "./CherrytopFramework": "./src/Entry.tsx",
                 "./AuthProvider": "./src/components/custom/Auth/Auth3.tsx",
                 // app/AppProvider includes theme, alert, confirm, drawer providers
@@ -63,6 +64,7 @@ module.exports = {
                 "./DateTimeLabel": "./src/components/custom/DateTimeLabel/DateTimeLabel.tsx",
                 './DisplayCard': './src/components/Mui/DisplayCard/DisplayCard.tsx',                        
                 "./FormContainer": "./src/components/custom/forms/FormContainer.tsx",
+                "./FullScreenLoader": "./src/components/custom/Loader/FullScreen.tsx",
                 './List': './src/components/Mui/List/List.tsx',
                 "./MarkdownWrapper": "./src/components/custom/wrappers/MarkdownWrapper/MarkdownWrapper.tsx",
                 "./Navbar": "./src/components/Mui/Navbar/Navbar.tsx",
