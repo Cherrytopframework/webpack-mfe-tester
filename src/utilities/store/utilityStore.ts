@@ -24,6 +24,7 @@ interface DrawerType {
     anchor?: "left" | "right" | "top" | "bottom"
     open?: boolean
     content?: any
+    variant?: "permanent" | "persistent" | "temporary"
     onOpen?: (cb: () => void) => void
     onClose?: (cb: () => void) => void
 }

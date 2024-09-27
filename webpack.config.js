@@ -65,6 +65,7 @@ module.exports = {
                 './DisplayCard': './src/components/Mui/DisplayCard/DisplayCard.tsx',                        
                 "./FormContainer": "./src/components/custom/forms/FormContainer.tsx",
                 "./FullScreenLoader": "./src/components/custom/Loader/FullScreen.tsx",
+                "./Mui": "./src/components/Mui/Layout/index.ts",
                 './List': './src/components/Mui/List/List.tsx',
                 "./MarkdownWrapper": "./src/components/custom/wrappers/MarkdownWrapper/MarkdownWrapper.tsx",
                 "./Navbar": "./src/components/Mui/Navbar/Navbar.tsx",

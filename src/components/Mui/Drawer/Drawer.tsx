@@ -1,13 +1,29 @@
 import { Box, SwipeableDrawer } from '@mui/material'
+import { useWindowSize } from 'usehooks-ts'
 import { DrawerType, useUtilityStore } from '../../../utilities/store/utilityStore';
 
 const Drawer = ({ children, ...props }: DrawerType) => {
     const { drawer, setDrawer } = useUtilityStore();
+    const windowSize = useWindowSize()
+    const formatSize = (windowSize: { height: number, width: number }) => {
+        if (windowSize.width < 320) return "xs";
+        if (windowSize.width < 600) return "sm";
+        if (windowSize.width < 960) return "md";
+        if (windowSize.width < 1280) return "lg";
+        return "xl";
+    };
+
     return (
         // @ts-ignore
         <SwipeableDrawer
-            {...props} 
-            {...drawer} 
+            {...props}
+            {...drawer}
+            {...(typeof(props.anchor) === "object") && {
+                anchor: props.anchor[formatSize(windowSize) as keyof typeof props.anchor]
+            }}
+            {...(typeof(props?.variant) === "object") && {
+                variant: props.variant[formatSize(windowSize) as keyof typeof props.variant]
+            }}
             onClose={() => setDrawer({ open: false })}
         >
             <Box sx={{ minWidth: 200, height: '100%', mt: 0, ...(drawer as any)?.boxStyle }}>
