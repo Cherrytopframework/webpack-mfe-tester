@@ -72,11 +72,13 @@ module.exports = {
                 "./NavMenu": "./src/components/Mui/Navbar/NavMenu.tsx",
                 "./NotionDataWrapper": "./src/components/custom/NotionPage/NotionPage.tsx",
                 "./NoRemoteEntry": "./src/components/custom/NoRemoteEntry/NoRemoteEntry.tsx",
+                "./Planning": "./src/components/custom/Planning/PlanningPage.tsx",
                 "./QueryWrapper": "./src/components/custom/wrappers/QueryWrapper/QueryWrapper.tsx",
                 "./ReusablePopover": "./src/components/custom/ReusablePopover/ReusablePopover.tsx",
                 "./ReusableTable": "./src/components/custom/charts/ReusableTable.tsx",
                 "./Tabs": "./src/components/Mui/Tabs/Tabs.tsx",
                 "./ThemeProvider": "./src/utilities/theme/index.ts",
+                "./utilities/Logs": "./src/utilities/helpers/logs.ts",
                 "./utilities/queries": "./src/utilities/api/index.ts",
                 "./utilities/store": "./src/utilities/store/index.ts",
                 "./utilities/store/utilityStore": "./src/utilities/store/utilityStore.ts"

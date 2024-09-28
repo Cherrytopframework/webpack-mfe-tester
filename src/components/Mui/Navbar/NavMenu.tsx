@@ -4,18 +4,20 @@ import {
     MenuItem, Tooltip, Typography
 } from '@mui/material';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const NavMenu = () => {
+const NavMenu = (props: any) => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseUserMenu = async () => {
+    const handleCloseUserMenu = async (item: { key: string, onClick?: () => void }) => {
+        if (item?.onClick) item.onClick()
         setAnchorElUser(null);
     };
+
 
     return (
         <>
@@ -40,9 +42,9 @@ const NavMenu = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
             >
-            {settings.map((setting: any) => (
-                <MenuItem key={setting} onClick={() => handleCloseUserMenu()}>
-                    <Typography textAlign="center">{setting}</Typography>
+            {props?.items && props.items.map((item: any) => (
+                <MenuItem key={item.key} onClick={() => handleCloseUserMenu(item)}>
+                    <Typography textAlign="center">{item.key}</Typography>
                 </MenuItem>
             ))}
             </Menu>

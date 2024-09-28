@@ -21,7 +21,7 @@ const ReusablePopover = (props: any) => {
                 onClick={() => setIsOpen(!isOpen)} 
                 whileHover={{ scale: 1.1 }}
             >
-                {console.log("params: ", params) as any}
+                {/* {console.log("params: ", params) as any} */}
                 {children}
             </Typography>
             <Popover
@@ -36,7 +36,7 @@ const ReusablePopover = (props: any) => {
             >
                 {/* <MessagesWrapper messages={params.value} /> */}
                 {/* <MarkdownWrapper>{JSON.stringify(params.value)}</MarkdownWrapper> */}
-                {/* <Typography sx={{ p: 2 }}>{JSON.stringify(params.value)}</Typography> */}
+                <Typography sx={{ p: 2 }}>{JSON.stringify(params?.value)}</Typography>
             </Popover>
         </Box>
     )

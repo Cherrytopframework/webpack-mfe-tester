@@ -1,7 +1,7 @@
 // Packages
 import { useEffect, useRef } from 'react';
 import {
-    Box, Grid, Typography, IconButton,
+    Box, Grid2 as Grid, Typography, IconButton,
     CardActionArea, Tooltip, Stack, ListItemText,
     CircularProgress,
 } from '@mui/material';
@@ -157,14 +157,16 @@ const ChatView = (props: any) => {
     return (
         <Grid container justifyContent="center" mt={8}>
             <Grid 
-                item 
-                xs={12} 
+                size={12} 
                 component={motion.div} 
                 ref={chatContainerRef} 
                 style={{ overflowY: 'auto' }}
                 sx={{ 
                     minHeight: window.innerHeight - 260, 
-                    width: window.innerWidth 
+                    width: window.innerWidth,
+                    ...props?.style,
+                    ...props?.sx,
+
                 }}
             >
                 {chatSessionsFetching 

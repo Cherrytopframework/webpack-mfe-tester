@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Box, Button, styled } from '@mui/material';
 import AuthForm from './AuthForm';
 // import { supabase } from '../../utilities/config/auth.config';
@@ -75,12 +76,12 @@ function AuthProvider({ children, ...props }: any) {
         console.log("handleForgotPassword: ", email);
     };
 
-    // useEffect(() => {
-    //     // ?? Because the auth provider is not a child of the AppRouter, the location ...
-    //     // ?? ... will not be updated when logging out and redirected to the login page ...
-    //     // ?? ... causing a bug when trying to log back in and the old path is still there. 
-    //     if (window.location.pathname !== "/") window.location.replace("/");
-    // }, []);
+    useEffect(() => {
+        // ?? Because the auth provider is not a child of the AppRouter, the location ...
+        // ?? ... will not be updated when logging out and redirected to the login page ...
+        // ?? ... causing a bug when trying to log back in and the old path is still there. 
+        if (window.location.pathname !== "/") window.location.replace("/");
+    }, []);
 
     // todo: Work on auto-login with JWT
     // useEffect(() => {
