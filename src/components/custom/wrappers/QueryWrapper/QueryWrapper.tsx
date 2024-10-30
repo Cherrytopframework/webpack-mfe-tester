@@ -1,9 +1,23 @@
 import { ReactNode, Suspense } from 'react';
 import { useQuery, QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { CircularProgress } from '@mui/material';
 
 import { queries, paths } from '../../../../utilities/api';
+import { apiScripts } from '../../../../utilities/scripts/api.scripts';
+import { graphqlQueries } from '@api/graphql/queries';
 
+
+interface QueryWrapperProps {
+    children: (data: any) => ReactNode
+    path?: (paths: any) => string
+    options?: {
+        method: string
+        payload?: any
+        graphql: false | boolean
+    }
+    loadingContent?: ReactNode,
+    errorContent?: (error: any) => ReactNode,
+    [key: string]: any
+};
 
 const queryClient = new QueryClient();
 
@@ -14,24 +28,32 @@ const QueryWrapper2 = ({
     loadingContent,
     errorContent,
     ...props
-} : {
-    path: (paths: any) => string,
-    children: (data: any) => ReactNode
-    options?: {
-        method: string
-        payload?: any
-        graphql: false | boolean
-    }
-    loadingContent?: ReactNode,
-    errorContent?: (error: any) => ReactNode,
-    [key: string]: any
-}) => {
-    const queryPath = path(paths);
+}: QueryWrapperProps) => {
+    // **
+    //  * queryPath: path => (paths: string[]) => string
+    //  * @param {object} - Array of available endpoints in backend services
+    //  * @returns {string} - queryPath
+    // */
+    const functionQuery = props?.fn && ({
+        queryKey: [props.fn],
+        queryFn: props.fn({
+            serverSchema: apiScripts.getSchema()
+        })
+    });
+
+    const queryPath = path 
+        ? path(
+            options?.graphql
+                ? graphqlQueries
+                : paths
+        ) : "";
+
     const wrapperQuery = useQuery(
-        // queries.query(queryPath)
-        !options?.graphql
-            ? queries.query(queryPath, options?.payload, options?.method)
-            : queries.graphQuery(queryPath, options?.payload, options?.method)
+        props?.fn
+            ? functionQuery
+            : !options?.graphql
+                ? queries.query(queryPath, options?.payload, options?.method)
+                : queries.graphQuery(queryPath)
     );
 
     const handleSuccess = () => {
@@ -40,41 +62,29 @@ const QueryWrapper2 = ({
     };
     
     return ({
-        pending: (<></>),
-        loading: (loadingContent ? loadingContent : <CircularProgress />),
+        pending: (<>{children(wrapperQuery)}</>),
+        loading: loadingContent 
+            ? loadingContent 
+            : <>{children(wrapperQuery)}</>,
         error: (
             errorContent 
                 ? errorContent(wrapperQuery.error) 
-                : <>Something went wrong. {JSON.stringify(wrapperQuery.error, null, 2)}</>
+                : <>{children(wrapperQuery)}</>
         ),
         success: (
-            <Suspense fallback={<CircularProgress />}>
+            <Suspense fallback={<>{children(wrapperQuery)}</>}>
                 {handleSuccess()}
             </Suspense>
         )
     }[wrapperQuery.status])
 };
 
-const QueryWrapper = ({ 
-    children, 
-    ...args 
-}: { 
-    children: (data: any) => ReactNode, 
-    path: (paths: any) => string,
-    options?: {
-        method: string
-        payload?: any
-        graphql: boolean
-    }
-}) => {
-    return (
-        <QueryClientProvider client={queryClient}>
-            {/* @ts-ignore */}
-            <QueryWrapper2 {...args}>
-                {children}
-            </QueryWrapper2>
-        </QueryClientProvider>
-    )
-}
+const QueryWrapper = ({ children, ...props }: QueryWrapperProps) => (
+    <QueryClientProvider client={queryClient}>
+        <QueryWrapper2 {...props}>
+            {children}
+        </QueryWrapper2>
+    </QueryClientProvider>
+);
 
 export default QueryWrapper;

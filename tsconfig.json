@@ -1,17 +1,27 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["./@mf-types/*"],
+      "@api/*": ["utilities/api/*"],
+      "@store/*": ["utilities/store/*"],
+      "@scripts/*": ["utilities/scripts/*"],
+      "@helpers/*": ["utilities/helpers/*"],
+      "@components/*": ["components/*"]
+    },
+
     "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "ESNext",
     "target": "ESNext",
     "jsx": "react-jsx",
     "allowJs": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    
 
-    // "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    // "module": "ESNext",
     "skipLibCheck": true,
 
     /* MUI Config */
@@ -37,10 +47,12 @@
     /* Docker Config */
     "esModuleInterop": true,
 
-    /** RSPack Config **/
-    "paths":{
-      "*": ["./@mf-types/*"]
-    }
+    "plugins": [
+      {
+        "name": "@0no-co/graphqlsp",
+        "schema": "./schema.graphql"
+      }
+    ]
 
   },
   "include": ["src"],

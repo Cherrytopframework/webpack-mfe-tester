@@ -13,9 +13,11 @@ import {
 } from '@mui/icons-material';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useEffect, useRef } from 'react';
+import { useForm } from '@tanstack/react-form';
+
 import { useChatStore } from '../../../utilities/store'
 import { ChatState } from '../../../utilities/store'
-import { client, paths } from '../../../utilities/api';
+import { paths } from '../../../utilities/api';
 import { chatScripts } from './chatHelper';
 
 
@@ -26,56 +28,38 @@ import { chatScripts } from './chatHelper';
 // ***
 const Chat = (props: any) => {
     const chatStore = useChatStore();
-
     // Plug in the passed in store if there is one
     let chat: ChatState = props?.chatStore
         ? props.chatStore
         : chatStore;
 
+    console.logs("CHAT:: ", chat, "ChatProps: ", props);
+
     let stabilityBalance = 0;
     const ref = useRef();
 
-    const handleSubmit = async () => {
-        console.log("send", props.submitPath);
+    const handleSubmit = (event?: any) => {
+        event?.preventDefault();
 
-        if (props?.submitPath) {
+        console.logs("send", props.submitPath);
 
-            props.handleSend({ status: "loading", isLoading: true });
+        if (props?.handleSend) props.handleSend({ 
+            status: "loading", 
+            isLoading: true 
+        });
 
-            const path = (typeof(props.submitPath) === "function")
-                ? props.submitPath(paths) 
-                : props.submitPath;
+        const path = (props?.submitPath && (typeof(props.submitPath) === "function"))
+            ? props.submitPath(paths) 
+            : props?.submitPath;
 
-            try {
-                const response = await client.post(path, {
-                    message: chat.inputMessage
-                });
-
-                chatScripts.handleSendMessage({
-                    chatStore: chat,
-                    serverMutation: {
-                        mutate: (payload: any) => console.log('chatScripts.handleSendMessage: ', payload),
-                    }
-                });
-
-                if (response.data) props.handleSend({ 
-                    status: "success", 
-                    isLoading: false, 
-                    data: response.data 
-                });
-
-                
-            } catch (error) {
-                console.error(error);
-                props.handleSend({ 
-                    status: "error", 
-                    isLoading: false, 
-                    error: error 
-                });
-            }
-
-        }
-        else if (props?.handleSend) props.handleSend(chat);
+        chatScripts.handleSendMessage({
+            chatStore: chat,
+            serverMutation: {
+                mutate: (payload: any) => console.log('chatScripts.handleSendMessage: ', payload),
+            },
+            ...props,
+            path
+        });
     };
 
     useEffect(() => {
@@ -94,6 +78,9 @@ const Chat = (props: any) => {
         };
     }, []);
 
+    const defaultValues = Object.assign({}, ...[]);
+    const form = useForm({ defaultValues, onSubmit: handleSubmit, validators: {} });
+
     return (
 
         <Box component={Paper} sx={{ position: 'sticky', bottom: 0, left: 0, right: 0, backdropFilter: 'blur(8px)' }}>
@@ -106,9 +93,11 @@ const Chat = (props: any) => {
                 {console.log(chat.mode)}
             </Box> */}
             {chat?.imageSrc && (
-                <Typography sx={{ px: 2 }} variant="subtitle1">Attachments</Typography>
+                <Typography sx={{ px: 2 }} variant="subtitle1">
+                    Attachments
+                </Typography>
             )}
-            <Box sx={{ display: "flex", gap: 2, pt: 1 }}>
+            <Box component={(form as any).Form} sx={{ display: "flex", gap: 2, pt: 1 }}>
             {chat?.imageSrc && (typeof chat.imageSrc === "string")
                 ? ( // if it is not null
                 <LazyLoadImage 
@@ -193,7 +182,7 @@ const Chat = (props: any) => {
                                         onClick={
                                             props?.handleAttachmentClick
                                                 ? props.handleAttachmentClick
-                                                : () => {}
+                                                : () => chatScripts.handleAttachmentClick(chat)
                                         }
                                         // disabled={!chat.activeChat?.session_id || props?.initialData?.activeChatId}
                                     >
@@ -209,6 +198,7 @@ const Chat = (props: any) => {
                                 sx={theme => ({ color: theme.palette.primary.main })}
                                 aria-label="send"
                                 color="inherit"
+                                type="submit"
                                 onClick={handleSubmit}
                                 size="small"
                             >

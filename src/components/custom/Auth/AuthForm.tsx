@@ -27,7 +27,7 @@ const AuthForm = (props: any) => {
     const [loginType, setLoginType] = useState("signin");
 
     const onSubmit = async (values: any) => {
-        console.log("onSubmit: ", values)
+        console.logs("onSubmit: ", values)
 
         if (props?.handleSubmit) await props.handleSubmit(values.value, loginType);
     };

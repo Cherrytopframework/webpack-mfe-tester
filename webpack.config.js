@@ -2,11 +2,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
-
+const QueryPlugin = require('./config/apiConfig.plugin.ts');
 
 
 module.exports = {
-    entry: "./src/index.ts",
+    entry: "./src/components/custom/App/index.ts",
     mode: "development",
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -33,28 +33,43 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'], // Resolves these extensions
-        alias: {},
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
+            "@api": path.resolve(__dirname, "./src/utilities/api"),
+            "@store": path.resolve(__dirname, "./src/utilities/store"),
+            "@scripts": path.resolve(__dirname, "./src/utilities/scripts"),
+            "@helpers": path.resolve(__dirname, "./src/utilities/helpers"),
+            "@components": path.resolve(__dirname, "./src/components"),
+        },
     },
     devServer: {
-        port: 8082
+        port: 8082,
+        headers: {
+            'Cross-Origin-Embedder-Policy': 'require-corp',
+            'Cross-Origin-Opener-Policy': 'same-origin',
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({ template: './public/index.html' }),
         new ModuleFederationPlugin({
             name: 'mf2',
             filename: "remoteEntry.js",
-            remotes: {},
+            remotes: {
+                // "shadui": "shadui@http://localhost:5173/remoteEntry.js"
+            },
             exposes: {
-                './Button': './src/Button.tsx',
-                "./App": "./src/App/index.tsx",
+                "./CherrytopFramework": "./src/components/custom/App/Entry.tsx",
+                "./App": "./src/components/custom/App/App.tsx",
+                "./AdminDashboard": "./src/components/custom/Admin/AdminDashboard.tsx",
                 "./AdvancedCamera": "./src/components/custom/AdvancedCamera/AdvancedCamera.tsx",
-                "./CherrytopFramework": "./src/Entry.tsx",
                 "./AuthProvider": "./src/components/custom/Auth/Auth3.tsx",
-                // app/AppProvider includes theme, alert, confirm, drawer providers
+                // mf2/AppProvider: includes theme, alert, confirm, drawer providers
                 "./AppProvider": "./src/components/custom/providers/Providers.tsx",
                 "./AlertProvider": "./src/components/custom/providers/AlertProvider.tsx",
                 "./ConfirmProvider": "./src/components/custom/providers/Confirm/ConfirmProvider.tsx",
+                './Button': './src/components/custom/App/Button.tsx',
                 "./BottomNavigation": "./src/components/Mui/BottomNavigation/BottomNavigation.tsx",
+                "./Breadcrumbs": "./src/components/Mui/BasicBreadcrumbs/BasicBreadcrumbs.tsx",
                 "./Camera": "./src/components/custom/Camera/Camera.tsx",
                 "./ChatBox": "./src/components/custom/Chat/Chat.tsx",
                 "./ChatView": "./src/components/custom/Chat/ChatView.tsx",
@@ -62,7 +77,9 @@ module.exports = {
                 "./ChartsContainer": "./src/components/custom/charts/ChartsWrapper.tsx",
                 "./DrawerContainer": "./src/components/Mui/Drawer/Drawer.tsx",
                 "./DateTimeLabel": "./src/components/custom/DateTimeLabel/DateTimeLabel.tsx",
-                './DisplayCard': './src/components/Mui/DisplayCard/DisplayCard.tsx',                        
+                './DisplayCard': './src/components/Mui/DisplayCard/DisplayCard.tsx',
+                './ErrorBoundary': './src/components/custom/ErrorBoundary/ErrorBoundary.tsx',
+                "./FloatingChat": "./src/components/custom/Chat/FloatingChat.tsx",
                 "./FormContainer": "./src/components/custom/forms/FormContainer.tsx",
                 "./FullScreenLoader": "./src/components/custom/Loader/FullScreen.tsx",
                 "./Mui": "./src/components/Mui/Layout/index.ts",
@@ -78,6 +95,8 @@ module.exports = {
                 "./ReusableTable": "./src/components/custom/charts/ReusableTable.tsx",
                 "./Tabs": "./src/components/Mui/Tabs/Tabs.tsx",
                 "./ThemeProvider": "./src/utilities/theme/index.ts",
+                "./TreeView": "./src/components/Mui/TreeView/TreeView.tsx",
+                "./Workbox": "./src/components/custom/Workbox/Workbox.tsx",
                 "./utilities/Logs": "./src/utilities/helpers/logs.ts",
                 "./utilities/queries": "./src/utilities/api/index.ts",
                 "./utilities/store": "./src/utilities/store/index.ts",
@@ -99,6 +118,7 @@ module.exports = {
                 }, // Share Zustand to ensure single store instance
             }
         }),
-        new Dotenv({})
+        new Dotenv({}),
+        new QueryPlugin()
     ]
 };

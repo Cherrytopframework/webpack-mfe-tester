@@ -12,6 +12,7 @@ interface ChatState {
   activeChatId: string | null;
   visionMode: string;
   defaultModel: string;
+  defaultVisionModel: string;
   selectedOptionsTab: number;
   drawerView: string;
   chatStatus: string | null;
@@ -50,6 +51,7 @@ interface ChatState {
   toggleVisionMode: (visionMode: string) => void;
   setDrawerView: (drawerView: string) => void;
   setDefaultModel: (defaultModel: string) => void;
+  setDefaultVisionModel: (defaultVisionModel: string) => void;
   handleSelectedOptionsTab: (value: number) => void;
   updateChatStatus: (status: string) => void;
   clearChat: () => void;
@@ -70,6 +72,7 @@ const useChatStore = create<ChatState>((set) => ({
     activeChatId: null,
     visionMode: 'default',  // " ^^ "
     defaultModel: 'llama3:latest',
+    defaultVisionModel: 'llava:7b-v1.6',
     selectedOptionsTab: 0,
     drawerView: "read", // options: ['read', 'add']
     chatStatus: null,
@@ -87,22 +90,63 @@ const useChatStore = create<ChatState>((set) => ({
     attachment: null,
     
     // handlers
+    // ** setAppConfig: sets the appConfig state **
+    // * @params {any} appConfig - the new appConfig object
+    // * @returns {void}
+    // */
     setAppConfig: (appConfig: any) => set(() => ({ appConfig })),
+    // ** setAppContent: sets the appContent state **
+    // * @params {any} appContent - the new appContent object
+    // * @returns {void}
+    // */
     setAppContent: (appContent: any) => set(() => ({ appContent })),
     setCpxData: (cpxData: any) => set(() => ({ cpxData })),
     setIsInternetQuery: (isInternetQuery) => set(() => ({ isInternetQuery })),
     setToolsWindowDrawer: (toolsWindowDrawer) => set(() => ({ toolsWindowDrawer })),
     setMutationOptions : (mutationOptions) => set(() => ({ mutationOptions })), // { method, endpoint, table }
+    // ** handleInput: sets the inputMessage state **
+    // * @params {string} inputMessage - the new inputMessage string
+    // * @returns {void}
+    // */
     handleInput: (inputMessage) => set(() => ({ inputMessage })), // String
+    // ** addMessage: Adds a message to the messages array **
+    // * @params {object} message - the new message object
+    // * @returns {void}
+    // */
     addMessage: (message) => set((prev) => ({ messages: [...prev.messages, message] })), // Object
+    // ** setMessages: Sets the messages array **
+    // * @params {array} messages - the new messages array
+    // * @returns {void}
+    // */
     setMessages: (messages) => set(() => ({ messages })), // Array of Objects
+    // ** handleView: Sets the view state **
+    // * @params {string} view - the new view string
+    // * @returns {void}
+    // */
     handleView: (view) => set(() => ({ view })), // String ["launching", "chat", "image", "voice"]
+    // ** handleMode: Sets the mode state **
+    // * @params {string} mode - the new mode string. Can be one of ["chat", "create", "imagine"]
+    // * @returns {void}
+    // */
     handleMode: (mode) => set(() => ({ mode })), // String: ["chat", "create", "imagine"]
+    // ** handleImageSrc: Sets the imageSrc state **
+    // * @description - sets the imageSrc state. Can handle multiple images
+    // * @params {string} imageSrc - the new imageSrc string
+    // * @returns {void}
+    // */
     handleImageSrc: (imageSrc) => set((prevState) => (prevState.imageSrc)
       ? ({ imageSrc: Array.isArray(prevState.imageSrc) ? [...prevState.imageSrc, imageSrc] : [prevState.imageSrc, imageSrc] })
       : ({ imageSrc }) as any
     ), // String Base64 image
+    // ** handleImageClassification: Sets the imageClassification state **
+    // * @params {string} imageClassification - the new imageClassification string
+    // * @returns {void}
+    // */
     handleImageClassification: (imageClassification) => set(() => ({ imageClassification })), // Object {}
+    // ** handleDrawer: Sets the drawerOpen state **
+    // * @params {boolean} drawerOpen - the new drawerOpen boolean
+    // * @returns {void}
+    // */
     handleDrawer: (drawerOpen) => set(() => ({ drawerOpen })), // Boolean
     setDrawerView: (drawerView) => set(() => ({ drawerView })), // String: ['read', 'add']
     handleActiveChat: (activeChat) => set(() => ({ activeChat })), // Object
@@ -110,6 +154,7 @@ const useChatStore = create<ChatState>((set) => ({
     handleAttachment: (attachment) => set(() => ({ attachment })), // String
     toggleVisionMode: (visionMode) => set(() => ({ visionMode })), // String ["Default", "Documents", "Receipts"]
     setDefaultModel: (defaultModel) => set(() => ({ defaultModel, drawerOpen: false, selectedOptionsTab: 0 })), // String: defaultModel
+    setDefaultVisionModel: (defaultVisionModel) => set(() => ({ defaultVisionModel })),
     handleSelectedOptionsTab: (selectedOptionsTab) => set(() => ({ selectedOptionsTab })), // Number
     updateChatStatus: (chatStatus) => set(() => ({ chatStatus })), // String
     clearChat: () => set(() => ({ messages: [] })), // Fn

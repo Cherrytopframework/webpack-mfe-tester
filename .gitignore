@@ -1,3 +1,14 @@
+# ignore packages
 node_modules
+
+# ignore env secrets
 .env
+
+# ignore build directory
 dist
+
+# ignore Docs
+docs
+jsdoc.conf.json
+typeDocs
+typedoc.json

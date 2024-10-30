@@ -12,31 +12,40 @@ const ReusablePopover = (props: any) => {
 
     return (
         <Box ref={anchorRef}>
-            <Typography 
-                pt={2} 
-                variant="body2" 
-                color="text.secondary" 
-                sx={{ cursor: 'pointer' }} 
-                component={motion.p} 
-                onClick={() => setIsOpen(!isOpen)} 
-                whileHover={{ scale: 1.1 }}
-            >
-                {/* {console.log("params: ", params) as any} */}
-                {children}
-            </Typography>
+            {props?.text 
+                ? (
+                    <Typography 
+                        pt={2} 
+                        variant="body2" 
+                        color="text.secondary" 
+                        sx={{ cursor: 'pointer' }} 
+                        component={motion.p} 
+                        onClick={() => setIsOpen(!isOpen)} 
+                        whileHover={{ scale: 1.1 }}
+                    >
+                        {/* {console.log("params: ", params) as any} */}
+                        {children}
+                    </Typography>
+                ) : children(params, () => setIsOpen(!isOpen))
+            }
             <Popover
                 open={isOpen}
                 anchorEl={anchorRef.current}
                 onClose={() => setIsOpen(false)}
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'left',
+                    horizontal: 'right',
                 }}
                 sx={{ p: 2 }}
             >
+                {props?.popoverContent 
+                    ? (typeof (props.popoverContent) === "function")
+                        ? props.popoverContent(params, (open?: boolean) => setIsOpen(open ? open : !isOpen))
+                        : props.popoverContent
+                    : <Typography sx={{ p: 2 }}>{JSON.stringify(params?.value)}</Typography>
+                }
                 {/* <MessagesWrapper messages={params.value} /> */}
-                {/* <MarkdownWrapper>{JSON.stringify(params.value)}</MarkdownWrapper> */}
-                <Typography sx={{ p: 2 }}>{JSON.stringify(params?.value)}</Typography>
+                        {/* <MarkdownWrapper>{JSON.stringify(params.value)}</MarkdownWrapper> */}
             </Popover>
         </Box>
     )

@@ -1,4 +1,4 @@
-import { paths } from "../../../utilities/api";
+import { client, paths } from "../../../utilities/api";
 
 
 interface MessageResult {
@@ -8,6 +8,18 @@ interface MessageResult {
     response?: string
 }
 
+// **
+// * getMetaData: Adds default metadata to the message
+// * @constructor
+// * @param chatStore
+// * @returns
+// * {
+// *   model: chatStore.defaultModel | "llama3.1:latest",
+// *   session_id: chatStore.activeChat.session_id,
+// *   date: new Date().toLocaleDateString(),
+// *   time: new Date().toLocaleTimeString()
+// * }
+// */
 const getMetaData = (chatStore: any) => ({
     model: chatStore.defaultModel,
     session_id: chatStore.activeChat?.session_id,
@@ -17,9 +29,17 @@ const getMetaData = (chatStore: any) => ({
 
 const chatScripts = {
 
+    // ** handleSendMessage: Sends message to the backend
+    // * @description - Main function that handles posting a message to the backend, can pass in a path to submit the request to. Can also pass in an onSuccess handler that will return the success data back out of the <Chat /> component.
+    // * @constructor
+    // * @param {ChatStore} chatStore - Chat store
+    // * @param {function} serverMutation - POST request function ** deprecated
+    // * @param {any} args - Additional arguments *if any needed*
+    // * @returns
+    // */
     handleSendMessage: async (
-        { chatStore, serverMutation }:
-        { chatStore: any, serverMutation: any }
+        { chatStore, serverMutation, ...args }:
+        { chatStore: any, serverMutation: any, [key: string]: any }
     ) => {
         const { inputMessage } = chatStore;
 
@@ -35,51 +55,56 @@ const chatScripts = {
                     text: inputMessage, 
                     sender: 'user',
                     // if image is present, it will be handled in the backend
-                    ...chatStore.imageSrc && { 
+                    ...chatStore?.imageSrc && { 
                         imageSrc: chatStore.imageSrc,
-                        model: 'llava:7b-v1.6'
+                        model: (chatStore.defaultVisionModel || 'llava:7b-v1.6')
                     } // supports attachments/uploads
                 };
 
                 // Add user's message to the chat state
                 chatStore.addMessage(message);
+                chatStore.handleInput(""); // clear the chat
+
+                // Send the current message and conversation id
+                // the backend will query the running messages
+                const url = args?.submitPath ? args.submitPath(paths) : paths.postChat;
+                const response = await client.post(url, {
+                    chatMode: chatStore.mode,
+                    id: chatStore.activeChat.id,
+                    message
+                });
 
                 // Define success handler callback -- Add response message to store
                 const handleSuccess = (result: MessageResult) => chatStore
                     .addMessage({
                         ...getMetaData(chatStore),
                         sender: 'bot',
-                        text: result?.response,
+                        text: typeof result === "string" ? result : result?.response,
                         model: result?.model,
                         ...result?.image && { imageSrc: result.image }
                     });
 
-                // Combining updating database and making request to llm
-                // Only need to send the current message and conversation id
-                // Will query the running messages from the backend
-                await serverMutation.mutate({
-                    url: paths.postChat,
-                    payload: {
-                        chatMode: chatStore.mode,
-                        id: chatStore.activeChat.id,
-                        message
-                    }
-                }, { onError: console.error, onSuccess: (result: any) => {
-                    console.log("is onSuccess in frontend handler working: ?", result)
-                    handleSuccess(result)
-                } });
+                if (response.status === 200) {
+                    handleSuccess(response.data);
+                    args?.onSuccess && args.onSuccess(response.data, chatStore.messages);
+                };
+            };
 
-                // // Refetch Chat Query to align chat state with multiple db updates
-                // query.refetch();
-            }
             // // auto-scroll the container to the bottom
             // scrollChatToBottom();
-        }
+        };
         // Clear the input
         chatStore.handleInput(""); // clear the chat
         chatStore.handleImageSrc(null);
     },
 
+    // ** handleSendPicture: Sends image to the backend
+    // * @description
+    // * @constructor
+    // * @param {ChatStore} chatStore - Chat store
+    // * @param {function} serverMutation - POST request function
+    // * @returns
+    // */
     handleSendPicture: async (
         { chatStore, serverMutation }:
         { chatStore: any, serverMutation: any }
@@ -137,6 +162,12 @@ const chatScripts = {
         // scrollChatToBottom();
     },
 
+    // ** handleAttachment: Handles attachment click, UI, and adds subsequent attachment to the chat
+    // * @description
+    // * @constructor
+    // * @param {ChatStore} chatStore - Chat store
+    // * @returns
+    // */
     handleAttachmentClick: async (store: any) => {
 
         const attachmentInput = document.createElement('input');
@@ -180,6 +211,12 @@ const chatScripts = {
         };
     },
 
+    // ** handleDownload: Downloads image from the chat
+    // * @description
+    // * @constructor
+    // * @param {object} message - Chat message
+    // * @returns
+    // */
     handleDownload: (message: { imageSrc: string, text: string }) => {
         const link = document.createElement('a');
         link.download = 'ai-family-image.png';
@@ -187,12 +224,26 @@ const chatScripts = {
         link.click();
     },
 
+    // ** handleCopy: Copies text from the chat
+    // * @description
+    // * @constructor
+    // * @param {object} message - Chat message
+    // * @returns
+    // */
     handleCopy: (message: { imageSrc: string, text: string }) => {
         navigator
             .clipboard
             .writeText(message?.imageSrc || message?.text);
     },
 
+    // ** handleKeyPress: Handles key press events
+    // * @description
+    // * @constructor
+    // * @param {KeyboardEvent} event - Keyboard event
+    // * @param {ChatStore} chatStore - Chat store
+    // * @param {function} handleSendMessage - Sends message to the backend
+    // * @returns
+    // */
     handleKeyPress: (event: KeyboardEvent, chatStore: any, handleSendMessage: () => void) => {
         console.log("key pressed: ", event);
 

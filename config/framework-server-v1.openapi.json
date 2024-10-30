@@ -1,0 +1,2078 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Framework Server",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/supertestroute": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/healthCheck": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/generate": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/camera/document": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stability/generate": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/camera/analyze-image": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/camera/save-receipt": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files/:directory": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files2/read": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/files2/framework": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notion/portfolio": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notion/:type": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/github/commits/:repository": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/database/api/read_schema": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/database/:table": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/database": {
+      "put": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/database/write_database": {
+      "put": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openfitness/fitness_tables": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openfitness/get-exercises": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openfitness/get-foods": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openfitness/get-single-food": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aichat/postChat": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aichat/command": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aichat/convertToCommands": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aichat/stability-balance": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/appConfig": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graphql": {
+      "all": {
+        "requestParams": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "_def": {
+                    "checks": [],
+                    "typeName": "ZodString",
+                    "coerce": false,
+                    "openapi": {
+                      "metadata": {
+                        "description": "Bad request"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "_def": {
+                    "checks": [],
+                    "typeName": "ZodString",
+                    "coerce": false,
+                    "openapi": {
+                      "metadata": {
+                        "description": "Unauthorized"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "_def": {
+                    "checks": [],
+                    "typeName": "ZodString",
+                    "coerce": false,
+                    "openapi": {
+                      "metadata": {
+                        "description": "Not found"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "_def": {
+                    "checks": [],
+                    "typeName": "ZodString",
+                    "coerce": false,
+                    "openapi": {
+                      "metadata": {
+                        "description": "Something went wrong. Internal server error"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/serverSchema": {
+      "get": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Bad request"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Not found"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "metadata": {
+                    "description": "Something went wrong. Internal server error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

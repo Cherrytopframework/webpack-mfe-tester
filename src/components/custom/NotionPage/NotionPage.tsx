@@ -12,9 +12,6 @@ const NotionPage = (props: NotionPageProps) => (
     <QueryWrapper {...props}>
         {({ data }) => (
             <Box>
-                {/* <MarkdownWrapper>
-                    {data?.markdown}
-                </MarkdownWrapper> */}
                 <NotionDataWrapper results={data?.notionPageContent?.results} />
             </Box>
         )}

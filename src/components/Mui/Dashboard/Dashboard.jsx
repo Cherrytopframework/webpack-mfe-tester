@@ -13,6 +13,7 @@ import { Chat, ChatView } from '../../custom/Chat';
 import { NotionPage } from '../../custom/NotionPage'
 import { useAppStore, useChatStore } from '../../../utilities/store';
 import { useWindowSize } from 'usehooks-ts';
+import QueryWrapper from '../../custom/wrappers/QueryWrapper';
 
 
 const Styled = {
@@ -40,10 +41,14 @@ export default function Dashboard(props) {
     const appStore = useAppStore();
     const chatStore = useChatStore();
     const windowSize = useWindowSize();
-    console.log("Dashboard.props: ", props)
+    console.log("Dashboard.props: ", props);
     return (
         <Box sx={{ display: 'flex' }}>
-
+            {/* <QueryWrapper path={() => '/notion'}>
+                {(response) => data && (
+                    <>I have Data! {console.log("Dashboard.data: ", response)}</>
+                )}
+            </QueryWrapper> */}
             {/* <AppBar sx={{ zIndex: 100 }}>
                 <Toolbar>
                     <Typography color="inherit" variant="h6" component="h6">
@@ -97,6 +102,7 @@ export default function Dashboard(props) {
             </DrawerContainer>
 
             <Styled.MainContainer component="main" windowSize={formatSize(windowSize)}>
+                <props.Crumbs />
                 <Chat chatStore={chatStore} handleCameraClick={() => props.router.go("/camera")} />
                 <Styled.MainContent container>
                     <Grid2 item size={12}>

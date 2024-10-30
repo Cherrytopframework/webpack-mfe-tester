@@ -59,7 +59,7 @@ const ChatView = (props: any) => {
         }
 
         // if no messages; scroll to top
-        if (!chat.messages) (chatContainerRef.current as any)?.scrollTo(0, 0);
+        if (!chat?.messages) (chatContainerRef.current as any)?.scrollTo(0, 0);
         
         // if messages; scroll to bottom
         else getLastElementInChat()

@@ -5,6 +5,7 @@ import { useAppStore, AppStoreType } from "./appStore";
 import { useChatStore, ChatState } from "./chatStore";
 import { useCameraStore, CameraStore, useModelStore, ModelStore } from "./cameraStore";
 import { useSharedStore, SharedStoreType } from "./sharedStore";
+import { useWorkboxStore } from "./workboxStore";
 
 export { 
     useSupabaseStore, 
@@ -14,7 +15,8 @@ export {
     useUtilityStore,
     useCameraStore,
     useModelStore,
-    useSharedStore
+    useSharedStore,
+    useWorkboxStore
 };
 
 export type {

@@ -1,5 +1,8 @@
+// import serverApiSchema from "./serverSchema.json";
+
 export default {
     paths: {
+        // ...serverApiSchema ? serverApiSchema : {},
         "example": "/example",
         "notionTest": "/notion/Home",
         "schema": '/database/api/read_schema',
@@ -11,9 +14,15 @@ export default {
         "notion": "/notion",
         "openfitness": "/openfitness",
         "openfitnessTables": "/openfitness/fitness_tables",
-        "appConfig": "/app",
+        "appConfig": "/appConfig",
         "commits": "/github/commits",
         "postChat": `/aichat/postChat`,
+        "healthCheck": "/healthCheck",
+        "files": "/files/",
+        "framework": "/files2/framework",
+        "serverSchema": "/serverSchema",
+        "proxy": "/api/v1/service/framework?endpoint=/api/v1",
+        "graphqlproxy": "/api/v1/service/framework?endpoint=/graphql?query="
         // "mfeMetadata": "/familyapps/mfe_metadata",
     },
     host: {

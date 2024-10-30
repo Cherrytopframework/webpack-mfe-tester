@@ -1,0 +1,22 @@
+{
+  "serverSchema": "/serverSchema",
+  "github": "/api/github",
+  "repo": "/api/github/",
+  "readSchema": "/database/read_schema",
+  "readDb": "/database/read_db",
+  "createRow": "/database/create_row",
+  "writeDb": "/database/write_db",
+  "deleteRow": "/database/delete_row",
+  "readOne": "/database/read_one_row",
+  "getIngestedFiles": "/ollama/getIngestedFiles",
+  "stabilityBalance": "/api/aichat/stability-balance",
+  "availableModels": "/ollama/available-models",
+  "postChat": "/api/aichat/postChat",
+  "name": "/local/image/",
+  "photos": "/local/photos",
+  "directory": "/local/files/",
+  "book": "/local/book",
+  "listIngested-files": "/api/privategpt/list-ingested-files",
+  "sleep": "/api/apple/sleep",
+  "document": "/camera/document"
+}

@@ -9,7 +9,7 @@ function a11yProps(index: number) {
     };
 };
 
-export default function BasicTabs(props: any) {
+export default function BasicTabs(props: { tabs: any[], [key: string]: any }) {
     const [value, setValue] = React.useState(props?.tabs[0].value || 0);
 
     const handleChange = (_: React.SyntheticEvent, newValue: number) => {
