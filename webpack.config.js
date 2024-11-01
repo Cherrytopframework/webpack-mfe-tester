@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
-const QueryPlugin = require('./config/apiConfig.plugin.ts');
+// const QueryPlugin = require('./config/apiConfig.plugin.ts');
 
 
 module.exports = {
@@ -43,6 +43,7 @@ module.exports = {
         },
     },
     devServer: {
+        host: "0.0.0.0",
         port: 8082,
         headers: {
             'Cross-Origin-Embedder-Policy': 'require-corp',
@@ -119,6 +120,6 @@ module.exports = {
             }
         }),
         new Dotenv({}),
-        new QueryPlugin()
+        // new QueryPlugin()
     ]
 };
