@@ -8,8 +8,7 @@
     "coverage": "vitest run --coverage",
     "pro": "npm run docs && npm run docs2saurus && concurrently \"npm run test\" \"npm start\"",
     "dev": "node ./src/index.ts",
-    "startOld": "webpack serve --mode development",
-    "start": "webpack --host 0.0.0.0 --config ./webpack.config.js --mode development",
+    "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "docs": "./node_modules/jsdoc/jsdoc.js -c ./config/jsdoc.json",
     "docs2saurus": "jsdocusaurus"

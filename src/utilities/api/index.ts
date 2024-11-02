@@ -6,15 +6,16 @@ import apiConfig from "./api.config";
 // todo: write an ctf command to add paths
 const paths = {
     "graphql": "http://localhost:4000",
-    // "host": process.env.CLIENT_HOSTNAME,
-    "host": "https://home-server.ngrok.io",
+    // "host": process.env.GATEWAY_HOSTNAME,
+    "host": "http://localhost:5505/api/v1",//dev server
+    // "host": "https://gateway.cherrytopframework.pro/api/v1",
     ...apiConfig.paths,
     // ...generatedApiConfig,
 };
 
 const client = axios.create({
     // todo: capture CLIENT_HOSTNAME when using the setup script
-    baseURL: (paths.host + paths.proxy),
+    baseURL: (paths.host),
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -28,7 +29,7 @@ const client = axios.create({
 
 const graphqlClient = axios.create({
     // todo: capture CLIENT_HOSTNAME when using the setup script
-    baseURL: (paths.host + paths.graphqlproxy),
+    baseURL: (paths.host),
     headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
