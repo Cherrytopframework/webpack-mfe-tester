@@ -12,6 +12,7 @@ const App = () => {
             <p>Visit <a>Cherrytopframework (Docs)</a></p>
             <p>and <a>Cherrytopframework (Storybook)</a></p>
             <p>to get the full run down on how the Microcomponent framework works and how to get started.</p>
+            🍒
         </div>
     );
 };
