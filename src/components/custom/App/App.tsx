@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const App = () => {
     useEffect(() => {
         // Just route the user to Storybook docs on load
-        window.location.assign("https://storybook.cherrytopframework.pro/?path=/docs/configure-your-project--documentation");
+        window.location.assign("https://storybook.cherrytopframework.pro");
     }, []);
     return (
         <div style={{ textAlign: "center", marginTop: "25%" }}>
